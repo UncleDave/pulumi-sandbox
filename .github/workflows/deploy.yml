@@ -10,7 +10,7 @@ on:
 
 jobs:
   preview:
-    name: Preview
+    name: pulumi up
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
       - run: npm install
       - uses: pulumi/actions@v3
         with:
-          command: preview
+          command: up
           cloud-url: ${{ vars.PULUMI_CLOUD_URL }}
           stack-name: ${{ github.event.number > 0 && format('dev-pr-{0}', github.event.number) || 'dev' }}
           comment-on-pr: true
